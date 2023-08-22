@@ -6,15 +6,15 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: server-one
+      run: server-one
   template:
     metadata:
       labels:
-        app: server-one
+        run: server-one
     spec:
       containers:
       - name: server-one
-        image: server-one:latest
+        image: docker.io/kevinbedrock/server-one 
         resources:
           limits:
             memory: "128Mi"
@@ -26,12 +26,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: server-one-service
+  labels:
+    run: server-one
 spec:
   externalIPs:
   - 192.168.5.12
   selector:
-    app: server-one-deployment
+    run: server-one
   ports:
-  - port: 5000
-    targetPort: 5000
-  type: ClusterIP
+    - port: 5000
+
