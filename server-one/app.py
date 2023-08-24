@@ -91,6 +91,8 @@ def onetdir():
     return do_work_and_respond()
 
 if __name__ == "__main__":
+    proxy = 'http://10.168.0.2:3128'
+    os.environ['https_proxy'] = proxy
     print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
     key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
     #key_path='/tmp/key.json'
