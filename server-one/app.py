@@ -45,9 +45,9 @@ def run_cloud_run2():
         return f'cloud-run invocation success, response is : {r.status_code}'
     
 def run_cloud_run():
-    req = urllib.request.Request('https://hello-yvx5f5cjfq-uc.a.run.app')
+    req = urllib.request.Request('https://us-central1-planar-night-391421.cloudfunctions.net/function-1')
     auth_req = google.auth.transport.requests.Request()
-    _id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://hello-yvx5f5cjfq-uc.a.run.app')
+    _id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://us-central1-planar-night-391421.cloudfunctions.net/function-1')
     bearer = f"Bearer {_id_token}"
     print(bearer)
     req.add_header("Authorization", bearer)
@@ -56,7 +56,7 @@ def run_cloud_run():
     if response.code != 200:
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, response is : {response.code}, {response.read()}'
+        return f'cloud-run invocation success, response is : {response.code}, {bearer }, {response.read()}'
 
 def fibonacci(n=10):
     num1 = 0
