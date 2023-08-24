@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from flask import Flask
 import requests
 import urllib
@@ -33,18 +34,11 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
             print(f'- {instance["name"]}')
             ret.append(f'- {instance["name"]}')
     return "<p>" + "\n".join(ret) + "</p>"
-
-def run_cloud_run2():
-    #headers = {'Authorization': f'Bearer {id_token}'}
-    headers = {}
-    print(headers)
-    r = requests.get('https://hello-yvx5f5cjfq-uc.a.run.app', headers=headers)
-    if r.status_code != 200:
-        return f'cloud-run invocation failed, response is : {r.status_code}'
-    else:
-        return f'cloud-run invocation success, response is : {r.status_code}'
     
 def run_cloud_run():
+    return "done nothing!"
+    
+def run_cloud_run2():
     req = urllib.request.Request('https://us-central1-planar-night-391421.cloudfunctions.net/function-1')
     auth_req = google.auth.transport.requests.Request()
     _id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://us-central1-planar-night-391421.cloudfunctions.net/function-1')
@@ -75,7 +69,7 @@ app = Flask(__name__)
 def rootdir():
     ret = []
     ret.append("<H1>This is a server-one application</H1>" )
-    ret.append("<p>" + str(fibonacci(1)) + "</p>")
+    ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
     ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
@@ -88,7 +82,7 @@ def rootdir():
 def onehdir():
     ret = []
     ret.append("<H1>This is a server-one application</H1>" )
-    ret.append("<p>" + str(fibonacci(100)) + "</p>")
+    ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
     ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
@@ -101,7 +95,7 @@ def onehdir():
 def onetdir():
     ret = []
     ret.append("<H1>This is a server-one application</H1>" )
-    ret.append("<p>" + str(fibonacci(1000)) + "</p>")
+    ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
     ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
