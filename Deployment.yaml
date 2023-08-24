@@ -68,9 +68,9 @@ automountServiceAccountToken: false
 #              path: "google-application-credentials.json"
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
-  name: server-one-deployment
+  name: server-one
   namespace: kevin-apps
 spec:
   replicas: 3
