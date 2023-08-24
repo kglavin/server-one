@@ -104,16 +104,16 @@ spec:
         projected:
           defaultMode: 420
           sources:
-          - serviceAccountToken:
-            path: token
-            audience: planar-night-391421.svc.id.goog
-            expirationSeconds: 172800
-  #    - configMap:
-  #        name: my-cloudsdk-config
-  #        optional: false
-  #        items:
-  #          - key: "config"
-  #            path: "google-application-credentials.json"
+          #- serviceAccountToken:
+          #  path: token
+          #  audience: planar-night-391421.svc.id.goog
+          #  expirationSeconds: 172800
+          - configMap:
+              name: my-cloudsdk-config
+              optional: false
+              items:
+              - key: "config"
+                path: "google-application-credentials.json"
 #    spec:
 #      containers:
 #      - name: server-one
