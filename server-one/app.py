@@ -64,45 +64,30 @@ def fibonacci(n=10):
        next_number = num1 + num2
     return next_number
 
-app = Flask(__name__)
-@app.route("/")
-def rootdir():
+def do_work_and_respond():
     ret = []
     ret.append("<H1>This is a server-one application</H1>" )
     ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
-    ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
+    #ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
     #ret.append("<p>" + str(run_cloud_run()) + "</p>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
     return "\n".join(ret)
+
+app = Flask(__name__)
+@app.route("/")
+def rootdir():
+    return do_work_and_respond()
       
 @app.route("/100")
 def onehdir():
-    ret = []
-    ret.append("<H1>This is a server-one application</H1>" )
-    ret.append("<p>" + str(datetime.now()) + "</p>")
-    ret.append("<H2>trying accessing google services</H2>")
-    ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
-    ret.append("<H2>trying accessing cloud run lambda function<H2>")
-    ret.append("<p>" + str(run_cloud_run()) + "</p>")
-    ret.append("<H2>end of data</H2>")
-    ret.append("\n")
-    return "\n".join(ret)
+        return do_work_and_respond()
 
 @app.route("/1000")
 def onetdir():
-    ret = []
-    ret.append("<H1>This is a server-one application</H1>" )
-    ret.append("<p>" + str(datetime.now()) + "</p>")
-    ret.append("<H2>trying accessing google services</H2>")
-    ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
-    ret.append("<H2>trying accessing cloud run lambda function<H2>")
-    ret.append("<p>" + str(run_cloud_run()) + "</p>")
-    ret.append("<H2>end of data</H2>")
-    ret.append("\n")
-    return "\n".join(ret)
+    return do_work_and_respond()
 
 if __name__ == "__main__":
     print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
