@@ -56,7 +56,7 @@ def run_cloud_run():
     if response.code != 200:
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, response is : {response.code}'
+        return f'cloud-run invocation success, response is : {response.code}, {response.text}'
 
 def fibonacci(n=10):
     num1 = 0
