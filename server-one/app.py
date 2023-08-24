@@ -79,7 +79,7 @@ def do_work_and_respond():
 app = Flask(__name__)
 @app.route("/")
 def rootdir():
-    fibonacci(n=10)
+    fibonacci(n=100000)
     return do_work_and_respond()
       
 @app.route("/100")
