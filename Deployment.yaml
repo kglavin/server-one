@@ -93,10 +93,10 @@ spec:
         - name: gcp-ksa
           mountPath: /var/run/secrets/tokens/gcp-ksa
           readOnly: true
-      resources:
-        limits:
-          memory: "128Mi"
-          cpu: "500m"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
         - containerPort: 5000
   #volumes:
