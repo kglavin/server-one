@@ -111,7 +111,8 @@ def onetdir():
     return "\n".join(ret)
 
 if __name__ == "__main__":
-    key_path = '/tmp/key.json'
+    print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
+    key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
     #credentials = service_account.Credentials.from_service_account_file(key_path, scopes=['https://www.googleapis.com/auth/cloud-platform'])
     credentials = service_account.Credentials.from_service_account_file(key_path)
     id_token = credentials.token
@@ -121,7 +122,7 @@ if __name__ == "__main__":
     audience = 'https://hello-yvx5f5cjfq-uc.a.run.app'
     creds = Credentials.from_service_account_file(key_path)
     oid_creds = service_account.IDTokenCredentials.from_service_account_file(
-       '/tmp/key.json', target_audience=audience)
+       key_path, target_audience=audience)
 
     #sa_key = os.environ['gkey']
     #sa_info = json.loads(sa_key)
