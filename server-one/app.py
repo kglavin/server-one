@@ -53,10 +53,10 @@ def run_cloud_run():
     req.add_header("Authorization", bearer)
     response = urllib.request.urlopen(req)
     print(response.code)
-    if response.status_code != 200:
-        return f'cloud-run invocation failed, response is : {response.status_code}'
+    if response.code != 200:
+        return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, response is : {response.status_code}'
+        return f'cloud-run invocation success, response is : {response.code}'
 
 def fibonacci(n=10):
     num1 = 0
@@ -79,7 +79,7 @@ def rootdir():
     ret.append("<H2>trying accessing google services</H2>")
     ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
-    ret.append("<p>" + str(run_cloud_run()) + "</p>")
+    #ret.append("<p>" + str(run_cloud_run()) + "</p>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
     return "\n".join(ret)
@@ -111,8 +111,9 @@ def onetdir():
     return "\n".join(ret)
 
 if __name__ == "__main__":
-    print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
-    key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+    #print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
+    #key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+    key_path='/tmp/key.json'
     #credentials = service_account.Credentials.from_service_account_file(key_path, scopes=['https://www.googleapis.com/auth/cloud-platform'])
     credentials = service_account.Credentials.from_service_account_file(key_path)
     id_token = credentials.token
