@@ -28,12 +28,59 @@ metadata:
   name: kevin-apps-ksa-name
 automountServiceAccountToken: false
 ---
-apiVersion: v1
-kind: Pod
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: server-one-pod
+#  namespace:  kevin-apps
+#spec:
+#  serviceAccountName: kevin-apps-ksa-name
+#  containers:
+#  - name: server-one
+#    image: docker.io/kevinbedrock/server-one
+#    env:
+#      - name: GOOGLE_APPLICATION_CREDENTIALS
+#        value: /var/run/secrets/tokens/gcp-ksa/google-application-credentials.json
+#    volumeMounts:
+#    - name: gcp-ksa
+#      mountPath: /var/run/secrets/tokens/gcp-ksa
+#      readOnly: true
+#    resources:
+#      limits:
+#        memory: "128Mi"
+#        cpu: "500m"
+#      ports:
+#        - containerPort: 5000
+#  volumes:
+#  - name: gcp-ksa
+#    projected:
+#      defaultMode: 420
+#      sources:
+#      - serviceAccountToken:
+#          path: token
+#          audience: planar-night-391421.svc.id.goog
+#          expirationSeconds: 172800
+#      - configMap:
+#          name: my-cloudsdk-config
+#          optional: false
+#          items:
+#            - key: "config"
+#              path: "google-application-credentials.json"
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: server-one-pod
-  namespace:  kevin-apps
+  name: server-one-deployment
+  namespace: kevin-apps
 spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: server-one
+  template:
+    metadata:
+      labels:
+        run: server-one
   serviceAccountName: kevin-apps-ksa-name
   containers:
   - name: server-one
@@ -66,21 +113,6 @@ spec:
           items:
             - key: "config"
               path: "google-application-credentials.json"
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: server-one-deployment
-  namespace: kevin-apps
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      run: server-one
-  template:
-    metadata:
-      labels:
-        run: server-one
 #    spec:
 #      containers:
 #      - name: server-one
