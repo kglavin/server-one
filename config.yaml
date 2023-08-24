@@ -1,3 +1,8 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name:  kevin-apps
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
