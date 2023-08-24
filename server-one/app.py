@@ -69,7 +69,7 @@ def do_work_and_respond():
     ret.append("<H1>This is a server-one application</H1>" )
     ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
-    ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
+    #ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
     #ret.append("<p>" + str(run_cloud_run()) + "</p>")
     ret.append("<H2>end of data</H2>")
