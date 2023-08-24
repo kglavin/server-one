@@ -81,22 +81,23 @@ spec:
     metadata:
       labels:
         run: server-one
-  #serviceAccountName: kevin-apps-ksa-name
-  containers:
-  - name: server-one
-    image: docker.io/kevinbedrock/server-one
-    env:
-      - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: /var/run/secrets/tokens/gcp-ksa/google-application-credentials.json
-    volumeMounts:
-    - name: gcp-ksa
-      mountPath: /var/run/secrets/tokens/gcp-ksa
-      readOnly: true
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-      ports:
+    spec:
+      serviceAccountName: kevin-apps-ksa-name
+      containers:
+      - name: server-one
+        image: docker.io/kevinbedrock/server-one
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/run/secrets/tokens/gcp-ksa/google-application-credentials.json
+        volumeMounts:
+        - name: gcp-ksa
+          mountPath: /var/run/secrets/tokens/gcp-ksa
+          readOnly: true
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+        ports:
         - containerPort: 5000
   #volumes:
   #- name: gcp-ksa
