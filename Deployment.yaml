@@ -4,7 +4,7 @@ metadata:
   namespace: kevin-apps
   name: my-cloudsdk-config
 data:
-  config: |
+  config: 
     {
       "type": "external_account",
       "audience": "identitynamespace:planar-night-391421.svc.id.goog:IDENTITY_PROVIDER",
