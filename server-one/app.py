@@ -79,7 +79,7 @@ def do_work_and_respond():
         if not attr.startswith("__"):
             ret.append("<p>" + str(attr) + "=" + str(getattr(creds, attr)) + "</p>")
 
-    #ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
+    ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
     #ret.append("<p>" + str(run_cloud_run()) + "</p>")
     ret.append("<H2>end of data</H2>")
