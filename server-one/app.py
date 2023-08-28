@@ -11,6 +11,7 @@ from google.oauth2 import service_account
 from google.auth.transport.requests import AuthorizedSession
 from google.oauth2.service_account import Credentials
 from googleapiclient import discovery
+import pprint
 
 creds = None
 oid_creds = None
@@ -73,7 +74,7 @@ def do_work_and_respond():
     #with open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], 'r') as file:
     #    data = file.read()
     #    ret.append("<p>" + data + "</p>") 
-    ret.append("<p> creds = " + str(creds) + "</p>")
+    ret.append("<p> creds = " + pprint.pformat(creds, indent=4) + "</p>")
     #ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
     #ret.append("<p>" + str(run_cloud_run()) + "</p>")
