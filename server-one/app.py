@@ -70,13 +70,12 @@ def do_bigquery():
     QUERY = (
         'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
         'WHERE state = "CA" '
-        'LIMIT 100')
+        'LIMIT 10')
     query_job = client.query(QUERY)
     rows = query_job.result()
     ret.append(f'<p> {QUERY} </p>')
-    ret.append(f'<p> {rows} </p>')
-    #for row in rows:
-    #    ret.append(f'<p>{row.name}</p>')
+    for row in rows:
+        ret.append(f'<p>{row.name}</p>')
     return ret
 
 def fibonacci(n=10):
