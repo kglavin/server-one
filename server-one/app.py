@@ -84,7 +84,7 @@ def do_work_and_respond(i):
     if i == 0 : 
         ret.append("<p>" + str(run_cloud_run()) + "</p>")
     if 2 == 0 : 
-        ret.append("<p>" + str(run_cloud_run()2) + "</p>")
+        ret.append("<p>" + str(run_cloud_run2()) + "</p>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
     return "\n".join(ret)
