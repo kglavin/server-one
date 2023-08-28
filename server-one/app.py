@@ -67,14 +67,14 @@ def fibonacci(n=10):
 
 def do_work_and_respond():
     ret = []
-    ret.append("<H1>This is a server-one application</H1>" )
+    ret.append("<H1>This is a server-one pplication</H1>" )
     ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
     ret.append(" GA_creds = " + os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
     #with open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], 'r') as file:
     #    data = file.read()
     #    ret.append("<p>" + data + "</p>") 
-    ret.append("<p> creds = " + pprint.pformat(creds, indent=4) + "</p>")
+    ret.append("<p> pp creds = " + pprint.pformat(creds, indent=4) + "</p>")
     #ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
     #ret.append("<p>" + str(run_cloud_run()) + "</p>")
