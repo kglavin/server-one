@@ -73,8 +73,10 @@ def do_bigquery():
         'LIMIT 100')
     query_job = client.query(QUERY)
     rows = query_job.result()
-    for row in rows:
-        ret.append(f'<p>{row.name}</p>')
+    ret.append(f'<p> {QUERY} </p>')
+    ret.append(f'<p> {rows} </p>')
+    #for row in rows:
+    #    ret.append(f'<p>{row.name}</p>')
     return ret
 
 def fibonacci(n=10):
