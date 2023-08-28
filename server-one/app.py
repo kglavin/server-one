@@ -98,15 +98,15 @@ if __name__ == "__main__":
     key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
     #key_path='/tmp/key.json'
     #credentials = service_account.Credentials.from_service_account_file(key_path, scopes=['https://www.googleapis.com/auth/cloud-platform'])
-    credentials = service_account.Credentials.from_service_account_file(key_path)
-    id_token = credentials.token
+    #credentials = service_account.Credentials.from_service_account_file(key_path)
+    #id_token = credentials.token
 
     #auth_req = google.auth.transport.requests.Request()
     # credentials.refresh(auth_req)
-    audience = 'https://hello-yvx5f5cjfq-uc.a.run.app'
+    #audience = 'https://hello-yvx5f5cjfq-uc.a.run.app'
     creds = Credentials.from_service_account_file(key_path)
-    oid_creds = service_account.IDTokenCredentials.from_service_account_file(
-       key_path, target_audience=audience)
+    #oid_creds = service_account.IDTokenCredentials.from_service_account_file(
+    #   key_path, target_audience=audience)
 
     #sa_key = os.environ['gkey']
     #sa_info = json.loads(sa_key)
