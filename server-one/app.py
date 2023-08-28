@@ -12,6 +12,7 @@ import google.oauth2.id_token
 from google.oauth2.service_account import Credentials
 from googleapiclient import discovery
 import pprint
+from google.cloud import bigquery
 
 creds = None
 oid_creds = None
@@ -102,6 +103,21 @@ def onehdir():
 @app.route("/3")
 def onetdir():
     return do_work_and_respond(3)
+
+@app.route("/bigquery")
+def obigquery():
+    ret = []
+    ret.append("<H1>This is a call to Big Query</H1>" )
+    client = bigquery.Client()
+    QUERY = (
+        'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
+        'WHERE state = "CA" '
+        'LIMIT 100')
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+    for row in rows:
+        ret.append(f'<p>{row.name}</p>')
+
 
 if __name__ == "__main__":
     #proxy = 'http://10.168.0.2:3128'
