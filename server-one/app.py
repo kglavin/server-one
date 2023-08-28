@@ -94,9 +94,9 @@ def onetdir():
 if __name__ == "__main__":
     #proxy = 'http://10.168.0.2:3128'
     #os.environ['https_proxy'] = proxy
-    #print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
-    #key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
-    key_path='/tmp/key.json'
+    print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
+    key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+    #key_path='/tmp/key.json'
     #credentials = service_account.Credentials.from_service_account_file(key_path, scopes=['https://www.googleapis.com/auth/cloud-platform'])
     #credentials = service_account.Credentials.from_service_account_file(key_path)
     #id_token = credentials.token
