@@ -37,7 +37,17 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
     return "<p>" + "\n".join(ret) + "</p>"
     
 def run_cloud_run2():
-    return "done nothing!"
+    req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
+    auth_req = google.auth.transport.requests.Request()
+    _id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-2-yvx5f5cjfq-lz.a.run.app')
+    bearer = f"Bearer {_id_token}"
+    req.add_header("Authorization", bearer)
+    response = urllib.request.urlopen(req)
+    print(response.code)
+    if response.code != 200:
+        return f'cloud-run2 invocation failed, response is : {response.code}'
+    else:
+        return f'cloud-run2 invocation success, response is : {response.code}, {response.read()}'
     
 def run_cloud_run():
     req = urllib.request.Request('https://function-1-yvx5f5cjfq-uc.a.run.app')
@@ -64,14 +74,17 @@ def fibonacci(n=10):
        next_number = num1 + num2
     return next_number
 
-def do_work_and_respond():
+def do_work_and_respond(i):
     ret = []
     ret.append("<H1>This is a server-one pplication</H1>" )
     ret.append("<p>" + str(datetime.now()) + "</p>")
     ret.append("<H2>trying accessing google services</H2>")
     ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
-    ret.append("<p>" + str(run_cloud_run()) + "</p>")
+    if i == 0 : 
+        ret.append("<p>" + str(run_cloud_run()) + "</p>")
+    if 2 == 0 : 
+        ret.append("<p>" + str(run_cloud_run()2) + "</p>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
     return "\n".join(ret)
@@ -80,15 +93,15 @@ app = Flask(__name__)
 @app.route("/")
 def rootdir():
     fibonacci(n=150000)
-    return do_work_and_respond()
+    return do_work_and_respond(0)
       
-@app.route("/100")
+@app.route("/2")
 def onehdir():
-        return do_work_and_respond()
+        return do_work_and_respond(2)
 
 @app.route("/1000")
 def onetdir():
-    return do_work_and_respond()
+    return do_work_and_respond(3)
 
 if __name__ == "__main__":
     #proxy = 'http://10.168.0.2:3128'
