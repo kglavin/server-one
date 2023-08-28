@@ -81,9 +81,9 @@ def do_work_and_respond(i):
     ret.append("<H2>trying accessing google services</H2>")
     ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
-    if i == 0 : 
+    if i == 0: 
         ret.append("<p>" + str(run_cloud_run()) + "</p>")
-    if 2 == 0 : 
+    if i == 2: 
         ret.append("<p>" + str(run_cloud_run2()) + "</p>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
@@ -99,7 +99,7 @@ def rootdir():
 def onehdir():
         return do_work_and_respond(2)
 
-@app.route("/1000")
+@app.route("/3")
 def onetdir():
     return do_work_and_respond(3)
 
