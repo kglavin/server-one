@@ -1,5 +1,6 @@
 rsa
 flask
+google-cloud-bigquery
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
