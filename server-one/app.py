@@ -77,7 +77,7 @@ def do_work_and_respond():
     ret.append("<p> pp creds = " + pprint.pformat(creds, indent=4) + "</p>")
     for attr in dir(creds):
         if not attr.startswith("__"):
-            ret.append("<p>" + attr + "=" + getattr(creds, attr) + "</p>")
+            ret.append("<p>" + str(attr) + "=" + str(getattr(creds, attr)) + "</p>")
 
     #ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
     ret.append("<H2>trying accessing cloud run lambda function<H2>")
