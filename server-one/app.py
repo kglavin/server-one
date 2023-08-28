@@ -76,30 +76,34 @@ def do_bigquery():
     ret.append(f'<p> {QUERY} </p>')
     for row in rows:
         ret.append(f'<p>{row.name}</p>')
-    return ret
+    return "\n".join(ret)
 
 def fibonacci(n=10):
+    ret = []
+    ret.append(f'<H1>This is a call to fibonacci {n} </H1>' )
     num1 = 0
     num2 = 1
     next_number = num2 
     count = 1
- 
     while count <= n:
        count += 1
        num1, num2 = num2, next_number
        next_number = num1 + num2
-    return next_number
+    ret.append(f'<p> fib({n}) == {next_number} </p>')
+    return "\n".join(ret)
 
 def do_work_and_respond(i):
     ret = []
-    ret.append("<H1>This is a server-one pplication</H1>" )
+    ret.append("<H1>This is a server-one Application</H1>" )
     ret.append("<p>" + str(datetime.now()) + "</p>")
-    ret.append("<H2>trying accessing google services</H2>")
-    ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
-    ret.append("<H2>trying accessing cloud run lambda function<H2>")
-    if i == 0: 
+    if i == 0:
+        ret.append("<H2>trying google cloud compute-api  -- list active Virtual Machines</H2>")
+        ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
+    if i == 1: 
+        ret.append("<H2>trying accessing cloud run lambda function-1 in US-CENTRAL Region<H2>")
         ret.append("<p>" + str(run_cloud_run()) + "</p>")
     if i == 2: 
+        ret.append("<H2>trying accessing cloud run lambda function-2 in NORTH-EUROPE Region<H2>")
         ret.append("<p>" + str(run_cloud_run2()) + "</p>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
@@ -108,20 +112,27 @@ def do_work_and_respond(i):
 app = Flask(__name__)
 @app.route("/")
 def rootdir():
-    fibonacci(n=150000)
     return do_work_and_respond(0)
       
-@app.route("/2")
+@app.route("/function-1")
 def onehdir():
-        return do_work_and_respond(2)
+        return do_work_and_respond(1)
 
-@app.route("/3")
+@app.route("/function-2")
 def onetdir():
-    return do_work_and_respond(3)
+    return do_work_and_respond(2)
 
 @app.route("/bigquery")
 def obigquery():
     return do_bigquery()
+
+@app.route("/100")
+def ofibhundred():
+    return fibonacci(100)
+
+@app.route("/1000")
+def ofibthousand():
+    return fibonacci(1000)
 
 if __name__ == "__main__":
     #proxy = 'http://10.168.0.2:3128'
