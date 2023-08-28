@@ -62,6 +62,20 @@ def run_cloud_run():
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
         return f'cloud-run invocation success, response is : {response.code}, {response.read()}'
+    
+def do_bigquery():
+    ret = []
+    ret.append("<H1>This is a call to Big Query</H1>" )
+    client = bigquery.Client()
+    QUERY = (
+        'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
+        'WHERE state = "CA" '
+        'LIMIT 100')
+    query_job = client.query(QUERY)
+    rows = query_job.result()
+    for row in rows:
+        ret.append(f'<p>{row.name}</p>')
+    return ret
 
 def fibonacci(n=10):
     num1 = 0
@@ -106,18 +120,7 @@ def onetdir():
 
 @app.route("/bigquery")
 def obigquery():
-    ret = []
-    ret.append("<H1>This is a call to Big Query</H1>" )
-    client = bigquery.Client()
-    QUERY = (
-        'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
-        'WHERE state = "CA" '
-        'LIMIT 100')
-    query_job = client.query(QUERY)
-    rows = query_job.result()
-    for row in rows:
-        ret.append(f'<p>{row.name}</p>')
-
+    return do_bigquery()
 
 if __name__ == "__main__":
     #proxy = 'http://10.168.0.2:3128'
