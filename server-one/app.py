@@ -80,6 +80,7 @@ def do_bigquery():
     #ret.append(f'<H3> {str(rows)} </H3>')
     ret.append ("<H2>result = " + answer + "</H2><hr>")
     ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/uscensus.png" alt="census">')
+    ret.append('<a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/home.png" alt="home"></a>')
     return "\n".join(ret)
 
 def fibonacci(n=10):
@@ -105,7 +106,7 @@ def do_work_and_respond(i):
     ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
-        ret.append("<H2>Acessing GKE API. List of other cluster nodes</H2>")
+        ret.append("<H2>Accessing GKE API. List of other cluster nodes</H2><hr>")
         ret.append("<H2>" + str(list_project_instances(creds=creds)) + "</H2>")
     if i == 1: 
         ret.append("<H2>Accessing Google CloudRun in US-CENTRAL Region<H2>")
@@ -115,8 +116,7 @@ def do_work_and_respond(i):
         ret.append("<H2>Accessing Google CloudRun in NORTH-EUROPE Region<H2>")
         ret.append("<H2>" + str(run_cloud_run2()) + "</H2>")
         ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
-    ret.append("<p>end of data</p></html>")
-    ret.append("\n")
+    ret.append('<a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/home.png" alt="home"></a>')
     return "\n".join(ret)
 
 def do_home_page():
