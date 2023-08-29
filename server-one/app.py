@@ -77,6 +77,7 @@ def do_bigquery():
     ret.append(f'<H2> {QUERY} </H2>')
     for row in rows:
         ret.append(f'<H3>{row.name}\n</H3>')
+    ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/uscensus.png" alt="census">')
     return "\n".join(ret)
 
 def fibonacci(n=10):
