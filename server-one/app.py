@@ -47,9 +47,9 @@ def run_cloud_run2():
     response = urllib.request.urlopen(req)
     print(response.code)
     if response.code != 200:
-        return f'cloud-run2 invocation failed, response is : {response.code}'
+        return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run2 invocation success, response is : {response.code},\n {response.read()}'
+        return f'cloud-run invocation success, response is : {response.code},\n {response.read()}'
     
 def run_cloud_run():
     req = urllib.request.Request('https://function-1-yvx5f5cjfq-uc.a.run.app')
@@ -97,7 +97,8 @@ def fibonacci(n=10):
     return "\n".join(ret)
 
 def do_work_and_respond(i):
-    ret = ['<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
+    ret = [ '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />', 
+        '<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
     ret.append("<H1>This is a server-one application - protected by Bedrock UltraSecurity</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
