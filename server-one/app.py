@@ -121,9 +121,28 @@ def do_work_and_respond(i):
     ret.append("\n")
     return "\n".join(ret)
 
+def do_home_page():
+    ret = [ '<html>',
+            '<meta charset="UTF-8">',
+            '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',
+            '<title> Protected by Bedrock UltraSecurity</title>', 
+            '<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
+    ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>")
+    ret.append("<H2>" + str(datetime.now()) + "</H2>")
+    ret.append("<H2>Choose the services you want to access</H2>")   
+    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li>')
+    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li>')
+    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li>')
+    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li><hr>')
+    return "\n".join(ret)
+
 app = Flask(__name__)
 @app.route("/")
 def rootdir():
+    return do_home_page()
+
+@app.route("/gke-nodes")
+def gkedir():   
     return do_work_and_respond(0)
       
 @app.route("/function-1")
