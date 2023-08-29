@@ -63,7 +63,7 @@ def run_cloud_run():
     
 def do_bigquery():
     ret = []
-    ret = ['<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
+    ret = ['<a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems"></a>']
     ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     ret.append("<H1>This is a call to the Google BigQuery api -  accessing census data</H1>" )
@@ -103,7 +103,7 @@ def do_work_and_respond(i):
             '<meta charset="UTF-8">',
             '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',
             '<title> Protected by Bedrock UltraSecurity</title>', 
-            '<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
+            '<a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems"></a>']
     ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
@@ -130,10 +130,10 @@ def do_home_page():
     ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>")
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     ret.append("<H2>Choose the services you want to access</H2>")   
-    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li>')
-    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li>')
-    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li>')
-    ret.append('<li><img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa"></li><hr>')
+    ret.append('<li><a href="http://127.0.0.1:5000/gke-nodes"><img src="https://storage.cloud.google.com/website-bucket-kevin/compute.png" alt="GKE API"></a></li>')
+    ret.append('<li><a href="http://127.0.0.1:5000/function-1"><img src="https://storage.cloud.google.com/website-bucket-kevin/cloudrun.png" alt="CloudRun IOWA"></a></li>')
+    ret.append('<li><a href="http://127.0.0.1:5000/function-2"><img src="https://storage.cloud.google.com/website-bucket-kevin/cloudrun.png" alt="CloudRun Finland"></a></li>')
+    ret.append('<li><a href="http://127.0.0.1:5000/bigquery"><img src="https://storage.cloud.google.com/website-bucket-kevin/bigquery.png" alt="Bigquery"></a></li><hr>')
     return "\n".join(ret)
 
 app = Flask(__name__)
