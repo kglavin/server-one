@@ -75,9 +75,12 @@ def do_bigquery():
     query_job = client.query(QUERY)
     rows = query_job.result()
     ret.append(f'<H2> {QUERY} </H2>')
-    #for row in rows:
-    #    ret.append(f'<H3>{row.name}\n</H3>')
-    ret.append(f'<H3> {str(rows)} </H3>')
+    answer = ""
+    for row in rows:
+        answer = answer + "," + row.name
+    #ret.append(f'<H3>{row.name}\n</H3>')
+    #ret.append(f'<H3> {str(rows)} </H3>')
+    ret.append ("result = {answer}")
     ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/uscensus.png" alt="census">')
     return "\n".join(ret)
 
