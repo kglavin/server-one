@@ -35,7 +35,8 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
         for instance in instances:
             print(f'- {instance["name"]}')
             ret.append(f'- {instance["name"]}')
-    return "<p>" + "\n".join(ret) + "</p>"
+    #return "<p>" + "\n".join(ret) + "</p>"
+    return "\n".join(ret)
     
 def run_cloud_run2():
     req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
@@ -73,9 +74,9 @@ def do_bigquery():
         'LIMIT 10')
     query_job = client.query(QUERY)
     rows = query_job.result()
-    ret.append(f'<p> {QUERY} </p>')
+    ret.append(f'<H2> {QUERY} </H2>')
     for row in rows:
-        ret.append(f'<p>{row.name}</p>')
+        ret.append(f'<H3>{row.name}\n</H3>')
     return "\n".join(ret)
 
 def fibonacci(n=10):
@@ -93,18 +94,18 @@ def fibonacci(n=10):
     return "\n".join(ret)
 
 def do_work_and_respond(i):
-    ret = []
-    ret.append("<H1>This is a server-one Application</H1>" )
-    ret.append("<p>" + str(datetime.now()) + "</p>")
+    ret = ['<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
+    ret.append("<H1>This is a server-one application - protected by Bedrock UltraSecurity</H1>" )
+    ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
         ret.append("<H2>trying google cloud compute-api  -- list active Virtual Machines</H2>")
-        ret.append("<p>" + str(list_project_instances(creds=creds)) + "</p>")
+        ret.append("<H2>" + str(list_project_instances(creds=creds)) + "</H2>")
     if i == 1: 
         ret.append("<H2>trying accessing cloud run lambda function-1 in US-CENTRAL Region<H2>")
-        ret.append("<p>" + str(run_cloud_run()) + "</p>")
+        ret.append("<H3>" + str(run_cloud_run()) + "<H3>")
     if i == 2: 
         ret.append("<H2>trying accessing cloud run lambda function-2 in NORTH-EUROPE Region<H2>")
-        ret.append("<p>" + str(run_cloud_run2()) + "</p>")
+        ret.append("<H3>" + str(run_cloud_run2()) + "</H3>")
     ret.append("<H2>end of data</H2>")
     ret.append("\n")
     return "\n".join(ret)
