@@ -7,8 +7,6 @@ import urllib
 import google.auth
 import google.auth.transport.requests
 import google.oauth2.id_token
-#from google.oauth2 import service_account
-#from google.auth.transport.requests import AuthorizedSession
 from google.oauth2.service_account import Credentials
 from googleapiclient import discovery
 import pprint
@@ -166,23 +164,8 @@ def ofibthousand():
     return fibonacci(1000)
 
 if __name__ == "__main__":
-    #proxy = 'http://10.168.0.2:3128'
-    #os.environ['https_proxy'] = proxy
     print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
     key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
     #key_path='/tmp/key.json'
-    #credentials = service_account.Credentials.from_service_account_file(key_path, scopes=['https://www.googleapis.com/auth/cloud-platform'])
-    #credentials = service_account.Credentials.from_service_account_file(key_path)
-    #id_token = credentials.token
-
-    #auth_req = google.auth.transport.requests.Request()
-    # credentials.refresh(auth_req)
-    #audience = 'https://hello-yvx5f5cjfq-uc.a.run.app'
     creds = Credentials.from_service_account_file(key_path)
-    #oid_creds = service_account.IDTokenCredentials.from_service_account_file(
-    #   key_path, target_audience=audience)
-
-    #sa_key = os.environ['gkey']
-    #sa_info = json.loads(sa_key)
-    #creds = Credentials.from_service_account_info(sa_info)
     app.run(host='0.0.0.0', debug=True)
