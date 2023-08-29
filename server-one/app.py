@@ -66,7 +66,7 @@ def do_bigquery():
     ret = ['<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
     ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
-    ret.append("<H1>This is a call to Big Query</H1>" )
+    ret.append("<H1>This is a call to the Google BigQuery api -  accessing census data</H1>" )
     client = bigquery.Client()
     QUERY = (
         'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
@@ -77,10 +77,10 @@ def do_bigquery():
     ret.append(f'<H2> {QUERY} </H2><hr>')
     answer = ""
     for row in rows:
-        answer = answer + "," + row.name
+        answer = answer + row.name + ", "
     #ret.append(f'<H3>{row.name}\n</H3>')
     #ret.append(f'<H3> {str(rows)} </H3>')
-    ret.append ("<H3>result = " + answer + "</H3><br/>")
+    ret.append ("<H2>result = " + answer + "</H2><hr>")
     ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/uscensus.png" alt="census">')
     return "\n".join(ret)
 
