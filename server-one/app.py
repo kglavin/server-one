@@ -97,8 +97,11 @@ def fibonacci(n=10):
     return "\n".join(ret)
 
 def do_work_and_respond(i):
-    ret = [ '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />', 
-        '<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
+    ret = [ '<html>',
+            '<meta charset="UTF-8">',
+            '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',
+            '<title> Protected by Bedrock UltraSecurity</title>', 
+            '<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
     ret.append("<H1>This is a server-one application - protected by Bedrock UltraSecurity</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
@@ -110,7 +113,7 @@ def do_work_and_respond(i):
     if i == 2: 
         ret.append("<H2>trying accessing cloud run lambda function-2 in NORTH-EUROPE Region<H2>")
         ret.append("<H3>" + str(run_cloud_run2()) + "</H3>")
-    ret.append("<p>end of data</p>")
+    ret.append("<p>end of data</p></html>")
     ret.append("\n")
     return "\n".join(ret)
 
