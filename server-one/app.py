@@ -27,16 +27,13 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
     result = compute.instances().list(project=project_id,  zone=zone).execute()
     instances = result.get('items', [])
     if not instances:
-        print('No instances found.')
         ret.append("No instances found")
     else:
-        print('Instances:')
-        ret.append("Instances:")
+        ret.append("Cluster Nodes:")
         for instance in instances:
             print(f'- {instance["name"]}')
             ret.append(f'- {instance["name"]}\n')
-    #return "<p>" + "\n".join(ret) + "</p>"
-    return "\n".join(ret)
+    return "<br/>".join(ret)
     
 def run_cloud_run2():
     req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
@@ -49,7 +46,7 @@ def run_cloud_run2():
     if response.code != 200:
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, response is : {response.code},\n {response.read()} <img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">'
+        return f'cloud-run invocation success, {response.read()} <img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">'
     
 def run_cloud_run():
     req = urllib.request.Request('https://function-1-yvx5f5cjfq-uc.a.run.app')
@@ -62,12 +59,12 @@ def run_cloud_run():
     if response.code != 200:
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, response is : {response.code},\n {response.read()} <img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">'
+        return f'cloud-run invocation success, {response.read()} <img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">'
     
 def do_bigquery():
     ret = []
     ret = ['<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
-    ret.append("<H1>This is a server-one application - protected by Bedrock UltraSecurity</H1>" )
+    ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     ret.append("<H1>This is a call to Big Query</H1>" )
     client = bigquery.Client()
@@ -102,16 +99,16 @@ def do_work_and_respond(i):
             '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',
             '<title> Protected by Bedrock UltraSecurity</title>', 
             '<img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems">']
-    ret.append("<H1>This is a server-one application - protected by Bedrock UltraSecurity</H1>" )
+    ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
-        ret.append("<H2>trying google cloud compute-api  -- list active Virtual Machines</H2>")
+        ret.append("<H2>Acessing GKE API. List of other cluster nodes</H2>")
         ret.append("<H2>" + str(list_project_instances(creds=creds)) + "</H2>")
     if i == 1: 
-        ret.append("<H2>trying accessing cloud run lambda function-1 in US-CENTRAL Region<H2>")
+        ret.append("<H2>Accessing Google CloudRun in US-CENTRAL Region<H2>")
         ret.append("<H3>" + str(run_cloud_run()) + "<H3>")
     if i == 2: 
-        ret.append("<H2>trying accessing cloud run lambda function-2 in NORTH-EUROPE Region<H2>")
+        ret.append("<H2>Accessing Google CloudRun in NORTH-EUROPE Region<H2>")
         ret.append("<H3>" + str(run_cloud_run2()) + "</H3>")
     ret.append("<p>end of data</p></html>")
     ret.append("\n")
