@@ -46,7 +46,7 @@ def run_cloud_run2():
     if response.code != 200:
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, {response.read()} <img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">'
+        return response.read()
     
 def run_cloud_run():
     req = urllib.request.Request('https://function-1-yvx5f5cjfq-uc.a.run.app')
@@ -59,7 +59,7 @@ def run_cloud_run():
     if response.code != 200:
         return f'cloud-run invocation failed, response is : {response.code}'
     else:
-        return f'cloud-run invocation success, {response.read()} <img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">'
+        return response.read()
     
 def do_bigquery():
     ret = []
@@ -106,10 +106,12 @@ def do_work_and_respond(i):
         ret.append("<H2>" + str(list_project_instances(creds=creds)) + "</H2>")
     if i == 1: 
         ret.append("<H2>Accessing Google CloudRun in US-CENTRAL Region<H2>")
-        ret.append("<H3>" + str(run_cloud_run()) + "<H3>")
+        ret.append("<H2>" + str(run_cloud_run()) + "<H2>")
+        ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">')
     if i == 2: 
         ret.append("<H2>Accessing Google CloudRun in NORTH-EUROPE Region<H2>")
-        ret.append("<H3>" + str(run_cloud_run2()) + "</H3>")
+        ret.append("<H2>" + str(run_cloud_run2()) + "</H2>")
+        ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
     ret.append("<p>end of data</p></html>")
     ret.append("\n")
     return "\n".join(ret)
