@@ -52,6 +52,7 @@ def run_cloud_run():
     #_id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-1-yvx5f5cjfq-uc.a.run.app')
     #bearer = f"Bearer {_id_token}"
     #req.add_header("Authorization", bearer)
+    
     response = urllib.request.urlopen(req)
     print(response.code)
     if response.code != 200:
