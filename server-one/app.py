@@ -52,7 +52,7 @@ def run_cloud_run():
     #_id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-1-yvx5f5cjfq-uc.a.run.app')
     #bearer = f"Bearer {_id_token}"
     #req.add_header("Authorization", bearer)
-    
+
     response = urllib.request.urlopen(req)
     print(response.code)
     if response.code != 200:
@@ -168,5 +168,5 @@ if __name__ == "__main__":
     print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
     key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
     #key_path='/tmp/key.json'
-    creds = Credentials.from_service_account_file(key_path)
+    #creds = Credentials.from_service_account_file(key_path)
     app.run(host='0.0.0.0', debug=True)
