@@ -108,15 +108,15 @@ def do_work_and_respond(i):
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     if i == 0:
         ret.append("<H2>Accessing GKE API. List of other cluster nodes</H2><hr>")
-        ret.append("<H2>" + str(list_project_instances(creds=creds)) + "</H2>")
+        #ret.append("<H2>" + str(list_project_instances(creds=creds)) + "</H2>")
     if i == 1: 
         ret.append("<H2>Accessing Google CloudRun in US-CENTRAL Region<H2>")
         ret.append("<H2>" + str(run_cloud_run()) + "<H2>")
-        ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">')
+        #ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">')
     if i == 2: 
         ret.append("<H2>Accessing Google CloudRun in NORTH-EUROPE Region<H2>")
         ret.append("<H2>" + str(run_cloud_run2()) + "</H2>")
-        ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
+        #ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
     ret.append('<hr><a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/home.png" alt="home"></a>')
     return "\n".join(ret)
 
@@ -168,5 +168,5 @@ if __name__ == "__main__":
     print(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) 
     key_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
     #key_path='/tmp/key.json'
-    #creds = Credentials.from_service_account_file(key_path)
+    creds = Credentials.from_service_account_file(key_path)
     app.run(host='0.0.0.0', debug=True)
