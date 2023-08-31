@@ -34,11 +34,15 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
     return "<br/>".join(ret)
     
 def run_cloud_run2():
+    # using explicit proxy with requests
     #proxies = {'https': 'http://10.168.0.2:3128'}
     #s = requests.session()
     #s.proxies.update(proxies)
     #r = s.get("https://function-2-yvx5f5cjfq-lz.a.run.app")
     #return r.text
+
+    # auth version using urllib and google.auth  
+    # proxy via https-proxy environment variable
     req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
     auth_req = google.auth.transport.requests.Request()
     _id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-2-yvx5f5cjfq-lz.a.run.app')
@@ -52,6 +56,8 @@ def run_cloud_run2():
         return response.read()
     
 def run_cloud_run():
+    # auth version using urllib and google.auth  
+    # proxy via https-proxy environment variable
     req = urllib.request.Request('https://function-1-yvx5f5cjfq-uc.a.run.app')
     auth_req = google.auth.transport.requests.Request()
     _id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-1-yvx5f5cjfq-uc.a.run.app')
@@ -122,6 +128,7 @@ def do_work_and_respond(i):
         ret.append("<H2>" + str(run_cloud_run2()) + "</H2>")
         ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
     ret.append('<hr><a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/home.png" alt="home"></a>')
+    ret.append('<hr></html>')
     return "\n".join(ret)
 
 def do_home_page():
@@ -136,7 +143,8 @@ def do_home_page():
     ret.append('<li><a href="http://127.0.0.1:5000/gke-nodes"><img src="https://storage.cloud.google.com/website-bucket-kevin/compute.png" alt="GKE API"></a>GKE API. List of other cluster nodes</li>')
     ret.append('<li><a href="http://127.0.0.1:5000/function-1"><img src="https://storage.cloud.google.com/website-bucket-kevin/cloudrun.png" alt="CloudRun IOWA"></a>Accessing Google CloudRun in US-CENTRAL Region</li>')
     ret.append('<li><a href="http://127.0.0.1:5000/function-2"><img src="https://storage.cloud.google.com/website-bucket-kevin/cloudrun.png" alt="CloudRun Finland"></a>Accessing Google CloudRun in NORTH-EUROPE Region</li>')
-    ret.append('<li><a href="http://127.0.0.1:5000/bigquery"><img src="https://storage.cloud.google.com/website-bucket-kevin/bigquery.png" alt="Bigquery"></a>Google BigQuery api - accessing census data</li><hr>')
+    ret.append('<li><a href="http://127.0.0.1:5000/bigquery"><img src="https://storage.cloud.google.com/website-bucket-kevin/bigquery.png" alt="Bigquery"></a>Google BigQuery api - accessing census data</li>')
+    ret.append('<hr></html>')
     return "\n".join(ret)
 
 app = Flask(__name__)
