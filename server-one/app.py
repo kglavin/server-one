@@ -77,12 +77,12 @@ def do_bigquery():
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     ret.append("<H1>This is a call to the Google BigQuery api -  accessing census data</H1>" )
     client = bigquery.Client()
-    state = random.choice(states)
-    number = random.choice(range(10, 20))
+    state = f'WHERE state = \"{random.choice(states)}\"'
+    limit = f'LIMIT {random.choice(range(10, 20))}'
     QUERY = (
         'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
-        f'WHERE state = {state}'
-        'LIMIT 10' )
+        state
+        limit )
     query_job = client.query(QUERY)
     rows = query_job.result()
     ret.append(f'<H2> {QUERY} </H2><hr>')
