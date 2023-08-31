@@ -121,8 +121,8 @@ def do_work_and_respond(i):
         #ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Iowa.svg.png" alt="iowa">')
     if i == 2: 
         ret.append("<H2>Accessing Google CloudRun in NORTH-EUROPE Region<H2>")
-        #ret.append("<H2>" + str(run_cloud_run2()) + "</H2>")
-        #ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
+        ret.append("<H2>" + str(run_cloud_run2()) + "</H2>")
+        ret.append('<img src="https://storage.cloud.google.com/website-bucket-kevin/Flag_of_Finland.svg.png" alt="finland">')
     ret.append('<hr><a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/home.png" alt="home"></a>')
     return "\n".join(ret)
 
