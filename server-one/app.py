@@ -80,9 +80,9 @@ def do_bigquery():
     state = random.choice(states)
     number = random.choice(range(10, 20))
     QUERY = (
-        'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` ',
-        f'WHERE state = {state}',
-        f'LIMIT {number}' )
+        'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
+        f'WHERE state = {state}'
+        'LIMIT 10' )
     query_job = client.query(QUERY)
     rows = query_job.result()
     ret.append(f'<H2> {QUERY} </H2><hr>')
