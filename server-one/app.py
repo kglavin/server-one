@@ -81,7 +81,7 @@ def do_bigquery():
     #limit = f'LIMIT {random.choice(range(10, 20))}'
     QUERY = (
         'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
-        f'WHERE state = \"{random.choice(states)}\"'
+        f'WHERE state = \"{random.choice(states)}\" '
         f'LIMIT {random.choice(range(10, 20))}' )
     query_job = client.query(QUERY)
     rows = query_job.result()
