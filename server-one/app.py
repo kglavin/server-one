@@ -34,8 +34,11 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
     return "<br/>".join(ret)
     
 def run_cloud_run2():
-    req = urllib.request.Request('http://www.google.com')
-    #req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
+    proxies = {'https': 'http://10.168.0.2:3128'}
+    s = requests.session()
+    s.proxies.update(proxies)
+    return s.get("http://www.google.com")
+    req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
     #auth_req = google.auth.transport.requests.Request()
     #_id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-2-yvx5f5cjfq-lz.a.run.app')
     #bearer = f"Bearer {_id_token}"
