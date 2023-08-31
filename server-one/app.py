@@ -34,9 +34,9 @@ def list_project_instances(project_id = 'planar-night-391421', zone='us-west2-a'
     return "<br/>".join(ret)
     
 def run_cloud_run2():
-    proxies = {'https': 'http://10.168.0.2:3128'}
+    #proxies = {'https': 'http://10.168.0.2:3128'}
     s = requests.session()
-    s.proxies.update(proxies)
+    #s.proxies.update(proxies)
     r = s.get("https://function-2-yvx5f5cjfq-lz.a.run.app")
     return r.text
     req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
