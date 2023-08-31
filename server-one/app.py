@@ -37,7 +37,8 @@ def run_cloud_run2():
     proxies = {'https': 'http://10.168.0.2:3128'}
     s = requests.session()
     s.proxies.update(proxies)
-    return s.get("http://www.google.com")
+    r = s.get("https://function-2-yvx5f5cjfq-lz.a.run.app")
+    return r.text
     req = urllib.request.Request('https://function-2-yvx5f5cjfq-lz.a.run.app')
     #auth_req = google.auth.transport.requests.Request()
     #_id_token = google.oauth2.id_token.fetch_id_token(auth_req, 'https://function-2-yvx5f5cjfq-lz.a.run.app')
