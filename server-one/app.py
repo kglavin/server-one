@@ -1,5 +1,4 @@
 import os
-import json
 from datetime import datetime
 from flask import Flask
 import requests
@@ -9,8 +8,8 @@ import google.auth.transport.requests
 import google.oauth2.id_token
 from google.oauth2.service_account import Credentials
 from googleapiclient import discovery
-import pprint
 from google.cloud import bigquery
+import random
 
 creds = None
 oid_creds = None
@@ -71,16 +70,19 @@ def run_cloud_run():
         return response.read()
     
 def do_bigquery():
+    states = [ "CA", "NY", "TX", "WA", "FL", "MA"]
     ret = []
     ret = ['<a href="http://127.0.0.1:5000/"><img src="https://storage.cloud.google.com/website-bucket-kevin/BedrockSystems.png" alt="bedrocksystems"></a>']
     ret.append("<H1>This is a business application running on a Bedrocked Worker Node.</H1>" )
     ret.append("<H2>" + str(datetime.now()) + "</H2>")
     ret.append("<H1>This is a call to the Google BigQuery api -  accessing census data</H1>" )
     client = bigquery.Client()
+    state = random.choice(states)
+    number = random.choice(range(10, 20))
     QUERY = (
         'SELECT name FROM `bigquery-public-data.usa_names.usa_1910_2013` '
-        'WHERE state = "CA" '
-        'LIMIT 10')
+        f'WHERE state = {state}'
+        f'LIMIT {number}')
     query_job = client.query(QUERY)
     rows = query_job.result()
     ret.append(f'<H2> {QUERY} </H2><hr>')
